@@ -2,9 +2,6 @@ package net.jcip.examples;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.awt.*;
-import java.awt.Point;
-
 import net.jcip.annotations.*;
 
 /**
@@ -25,6 +22,7 @@ public class DelegatingVehicleTracker {
     }
 
     public Map<String, Point> getLocations() {
+        //返回的是不可修改但却实时的车辆位置视图，这就意味着如果返回后车辆的位置发生了变化，对于视图线程来说，是可见的。
         return unmodifiableMap;
     }
 
