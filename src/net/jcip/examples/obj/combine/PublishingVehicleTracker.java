@@ -1,9 +1,10 @@
-package net.jcip.examples;
+package net.jcip.examples.obj.combine;
 
 import java.util.*;
 import java.util.concurrent.*;
 
 import net.jcip.annotations.*;
+import net.jcip.examples.SafePoint;
 
 /**
  * PublishingVehicleTracker

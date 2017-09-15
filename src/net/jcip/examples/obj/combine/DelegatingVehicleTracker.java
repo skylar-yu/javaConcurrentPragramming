@@ -1,8 +1,9 @@
-package net.jcip.examples;
+package net.jcip.examples.obj.combine;
 
 import java.util.*;
 import java.util.concurrent.*;
 import net.jcip.annotations.*;
+import net.jcip.examples.Point;
 
 /**
  * DelegatingVehicleTracker
@@ -18,6 +19,7 @@ public class DelegatingVehicleTracker {
 
     public DelegatingVehicleTracker(Map<String, Point> points) {
         locations = new ConcurrentHashMap<String, Point>(points);
+            //locations是通过外界来的map构造的，并没有进行深拷贝，所以必须保证Point是不可变的
         unmodifiableMap = Collections.unmodifiableMap(locations);
     }
 

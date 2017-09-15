@@ -1,8 +1,9 @@
-package net.jcip.examples;
+package net.jcip.examples.obj.combine;
 
 import java.util.*;
 
 import net.jcip.annotations.*;
+import net.jcip.examples.MutablePoint;
 
 /**
  * MonitorVehicleTracker

@@ -1,4 +1,4 @@
-package net.jcip.examples;
+package net.jcip.examples.obj.combine;
 
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
