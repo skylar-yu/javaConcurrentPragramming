@@ -1,7 +1,7 @@
 package com.op.concurrent.test;
 
 public class Student {
-    private final int age;
+    private int age;
     private String name;
 
     public Integer getAge() {
@@ -11,9 +11,9 @@ public class Student {
     public Student(){
         age = 3;
     }
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     public String getName() {
         return name;

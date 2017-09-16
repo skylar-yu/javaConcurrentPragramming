@@ -86,6 +86,7 @@ public class TestDelegation {
         for(Map.Entry<String,Student> en : map.entrySet()){
             System.out.println(en.getKey()+"..."+en.getValue());
         }
+        System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
         for(Map.Entry<String,Student> en : hashMap.entrySet()){
             System.out.println(en.getKey()+">22>>"+en.getValue());
         }
@@ -94,10 +95,16 @@ public class TestDelegation {
         Student student1 = map.get("ahah");
         student1.setAge(100);
         student1.setName("fasdfa");
+        Student student2 = new Student();
+        student2.setAge(2017);
+        student2.setName("xiasha");
+        map2.put("addr", student2);
+        map2.put("ahah", student2);
 //        map.put("ahah",map.get("ahah").setAge(5););
         for(Map.Entry<String,Student> en : map.entrySet()){
             System.out.println(en.getKey()+"..."+en.getValue());
         }
+        System.out.println("............................");
         for(Map.Entry<String,Student> en : hashMap.entrySet()){
             System.out.println(en.getKey()+">>333>"+en.getValue());
         }
