@@ -23,7 +23,7 @@ public class TestHarness {
                         try {
                             task.run();
                         } finally {
-                            endGate.countDown();
+                            endGate.countDown(); //每调用一次这个方法，在构造函数中初始化的count值就减1
                         }
                     } catch (InterruptedException ignored) {
                     }
