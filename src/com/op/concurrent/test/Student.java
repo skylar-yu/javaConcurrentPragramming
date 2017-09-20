@@ -1,7 +1,7 @@
 package com.op.concurrent.test;
 
 public class Student {
-    private  int age;
+    private int age;
     private String name;
 
     public Integer getAge() {

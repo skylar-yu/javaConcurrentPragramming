@@ -11,7 +11,7 @@ import java.util.concurrent.*;
  * @author Brian Goetz and Tim Peierls
  */
 public class BoundedHashSet <T> {
-    private final Set<T> set;
+    private final Set<T> set;   // 假定能承载的请求数
     private final Semaphore sem;
 
     public BoundedHashSet(int bound) {
@@ -20,7 +20,7 @@ public class BoundedHashSet <T> {
     }
 
     public boolean add(T o) throws InterruptedException {
-        sem.acquire();
+        sem.acquire();     //判断是否还能继续承载请求，如果不能，阻塞
         boolean wasAdded = false;
         try {
             wasAdded = set.add(o);
@@ -33,7 +33,7 @@ public class BoundedHashSet <T> {
 
     public boolean remove(Object o) {
         boolean wasRemoved = set.remove(o);
-        if (wasRemoved)
+        if (wasRemoved)       //如果成功释放了请求，则将一个permit释放到semaphore中
             sem.release();
         return wasRemoved;
     }

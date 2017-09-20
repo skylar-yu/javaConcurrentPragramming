@@ -19,7 +19,7 @@ public class TestHarness {
             Thread t = new Thread() {
                 public void run() {
                     try {
-                        startGate.await();
+                        startGate.await();  //创建的nThread个线程，都等待获取startGate闭锁
                         try {
                             task.run();
                         } finally {
@@ -33,8 +33,8 @@ public class TestHarness {
         }
 
         long start = System.nanoTime();
-        startGate.countDown();
-        endGate.await();
+        startGate.countDown();  //主线程操作闭锁startGate，让创建的线程都同时获取该锁
+        endGate.await();    // 主线程等待获取闭锁endGate。
         long end = System.nanoTime();
         return end - start;
     }
