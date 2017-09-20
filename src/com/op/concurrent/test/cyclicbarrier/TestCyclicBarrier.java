@@ -30,6 +30,11 @@ public class TestCyclicBarrier {
                 new Writer(barrier).start();
             }
         }
+
+//        System.out.println("以下让cyclicBarrier再重用一次。。。");
+//        for(int i=0;i<N;i++) {
+//            new Writer(barrier).start();
+//        }
     }
 
     static class Writer extends Thread {
