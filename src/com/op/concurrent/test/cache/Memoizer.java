@@ -11,22 +11,6 @@ public class Memoizer <K,V> implements Computable<K,V>{
     public Memoizer(Computable computable){
         this.computable = computable;
     }
-/*    public V caculate(K key) throws ExecutionException, InterruptedException {
-        Future<V> future = cache.get(key);
-        if (future == null) {
-            //do some caculation
-            Callable<V> callable = new Callable<V>() {
-                @Override
-                public V call() throws Exception {
-                    return null;
-                }
-            };
-            Future<V> futureTask = new FutureTask<V>((Callable<V>) callable);
-            cache.put(key, futureTask);
-            future = futureTask;
-        }
-        return future.get();
-    }*/
     @Override
     public V compute(final K k) {
         Future<V> future = cache.get(k);
