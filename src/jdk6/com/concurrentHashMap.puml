@@ -10,11 +10,11 @@ https://yq.aliyun.com/articles/25405
 
 abstract class AbstractMap
 class ConcurrentHashMap{
-    +Segment[] segment
+    +volitale Segment[] segment
 }
 interface ConcurrentMap
 class Segment{
-    +HashEntry entry
+    +volitale HashEntry[] table
 }
 class ReentrantLock
 
