@@ -1,0 +1,34 @@
+@startuml
+
+interface Tree{
+    + Tree getParent()
+    + Object getPayload()
+    + Tree getChild(int i)
+    + int getChildCount()
+    + String toStringTree()
+}
+interface SyntaxTree{
+    + Interval getSourceInterval()
+}
+interface ParseTree{
+    + <T> T accept(ParseTreeVisitor<? extends T> visitor)
+    + String getText()
+    + String toStringTree(Parser parser)
+}
+interface RuleNode{
+    + RuleContext getRuleContext()
+}
+interface TerminalNode{
+    + Token getSymbol()
+}
+class RuleContext
+class ParserRuleContext
+
+Tree <|-- SyntaxTree
+SyntaxTree <|-- ParseTree
+ParseTree <|-- RuleNode
+ParseTree <|-- TerminalNode
+RuleNode <|.. RuleContext
+RuleContext <|-- ParserRuleContext
+
+@enduml

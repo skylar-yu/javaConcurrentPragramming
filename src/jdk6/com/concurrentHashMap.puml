@@ -1,5 +1,7 @@
 @startuml
-/'泛化，Generalization：<|--
+/'
+https://yq.aliyun.com/articles/25405
+泛化，Generalization：<|--
 关联，Association：<--
 组合，Composition：*--
 聚合，Aggregation：o--
@@ -7,9 +9,13 @@
 依赖，Dependency：<..'/
 
 abstract class AbstractMap
-class ConcurrentHashMap
+class ConcurrentHashMap{
+    +Segment[] segment
+}
 interface ConcurrentMap
-class Segment
+class Segment{
+    +HashEntry entry
+}
 class ReentrantLock
 
 AbstractMap<|--ConcurrentHashMap
