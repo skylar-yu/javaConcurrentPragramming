@@ -1,0 +1,29 @@
+@startuml
+/'泛化，Generalization：<|--
+关联，Association：<--
+组合，Composition：*--
+聚合，Aggregation：o--
+实现，Realization：<|..
+依赖，Dependency：<..'/
+
+abstract class AbstractMap
+class ConcurrentHashMap
+interface ConcurrentMap
+class Segment
+class ReentrantLock
+
+AbstractMap<|--ConcurrentHashMap
+ConcurrentMap<|..ConcurrentHashMap
+ConcurrentHashMap *--- Segment:contains
+ReentrantLock <|--Segment
+/'class ArrayList {
+Object[] elementData
+size()
+}
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}'/
+
+@enduml
