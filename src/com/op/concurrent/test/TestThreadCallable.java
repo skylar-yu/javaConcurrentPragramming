@@ -34,6 +34,8 @@ public class TestThreadCallable <K> {
             }
         });
 
+        es.submit(futureTask);
+
         FutureTask<Long> ft2 = new FutureTask(new Runnable() {
             @Override
             public void run() {
