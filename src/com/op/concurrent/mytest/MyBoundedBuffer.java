@@ -15,7 +15,7 @@ public class MyBoundedBuffer<E> {
     public synchronized E take() {
         while(ifEmpty()){
             try {
-                System.out.println("为空，等待。。。");
+                System.out.println("is empty，wait>>>>");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -36,7 +36,7 @@ public class MyBoundedBuffer<E> {
     public synchronized void put(E e) {
         while (isFull()){
             try {
-                System.out.println("满了，等待。。。");
+                System.out.println("is full ，wait>>>>>>");
                 wait();
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
