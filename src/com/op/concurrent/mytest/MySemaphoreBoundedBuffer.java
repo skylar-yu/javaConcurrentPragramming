@@ -1,11 +1,9 @@
 package com.op.concurrent.mytest;
 
-import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.concurrent.Semaphore;
 
-@ThreadSafe
 public class MySemaphoreBoundedBuffer<E> {
     private final Semaphore spaceSem;
     private final Semaphore itemSem;
