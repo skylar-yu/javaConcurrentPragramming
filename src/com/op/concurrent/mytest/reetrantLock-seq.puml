@@ -1,0 +1,14 @@
+@startuml
+actor Thread
+participant ReetrantLock
+participant AQS
+Thread -> ReetrantLock:lock()
+ReetrantLock -> AQS: acquire(int)
+AQS->ReetrantLock:tryAcquire()
+alt 成功获取锁
+    ReetrantLock->Thread
+else 没有获取到锁
+    AQS->AQS:addWriter()
+    AQS->AQS:acquireQueued()
+end
+@enduml
