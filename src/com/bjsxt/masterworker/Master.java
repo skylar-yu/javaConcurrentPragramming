@@ -5,10 +5,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * Master-Worker模式是一种将串行任务并行化的方案，被分解的子任务在系统中可以被并行处理，
+ * 同时，如果有需要，Master进程不需要等待所有子任务都完成计算，就可以根据已有的部分结果集计算最终结果集。
+ */
 public class Master {
 
 	//1 有一个盛放任务的容器
-	private ConcurrentLinkedQueue<Task> workQueue = new ConcurrentLinkedQueue<Task>();
+	private ConcurrentLinkedQueue<Task> taskQueue = new ConcurrentLinkedQueue<>();
 	
 	//2 需要有一个盛放worker的集合
 	private HashMap<String, Thread> workers = new HashMap<String, Thread>();
@@ -18,7 +22,7 @@ public class Master {
 	
 	//4 构造方法
 	public Master(Worker worker , int workerCount){
-		worker.setWorkQueue(this.workQueue);
+		worker.setWorkQueue(this.taskQueue);
 		worker.setResultMap(this.resultMap);
 		
 		for(int i = 0; i < workerCount; i ++){
@@ -29,7 +33,7 @@ public class Master {
 	
 	//5 需要一个提交任务的方法
 	public void submit(Task task){
-		this.workQueue.add(task);
+		this.taskQueue.add(task);
 	}
 	
 	//6 需要有一个执行的方法，启动所有的worker方法去执行任务
@@ -57,18 +61,4 @@ public class Master {
 		}
 		return priceResult;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
