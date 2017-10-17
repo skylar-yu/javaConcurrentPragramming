@@ -1,8 +1,8 @@
-package com.bjsxt.contact;
+package com.bjsxt.notify;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
+
 /**
  * @author alienware
  *
