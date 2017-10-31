@@ -33,7 +33,7 @@ public class ListAdd2 {
 							Thread.sleep(500);
 							if(list2.size() == 5){
 								System.out.println("已经发出通知..");
-								lock.notify();
+								lock.notify();		//notify并不释放锁
 							}
 						}						
 					}
@@ -63,7 +63,7 @@ public class ListAdd2 {
 		}, "t2");	
 		t2.start();
 		t1.start();
-		
+
 	}
 	
 }
