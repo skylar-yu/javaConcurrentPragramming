@@ -26,6 +26,7 @@ public class LinkedQueue<E> {
         Node<E> newNode = new Node<E>(item, null);
         while (true) {
             Node<E> currentNode = tail.get();
+            //此处不应该取tail.next.get(); 应该尽量保持取的值的状态一致性，因为如果多线程情况下，如果取tail来取，tail和上一行代码的tail不是执行同一个节点
             Node<E> nextPoint = currentNode.next.get();
             //此处判断是为了，两个线程同时进入该方法，第一个线程成功执行上面的代码和下面的代码；第二个线程已经执行的上面的代码，才开始执行以下代码
             //不判断，if(nextPoint==null)成立，但是if(currentNode.next.compareAndSet(null, newNode))不成立
