@@ -21,7 +21,9 @@ public class LinkedQueue<E> {
     private AtomicReference<Node<E>> head
             = new AtomicReference<Node<E>>(new Node<E>(null, null));
     private AtomicReference<Node<E>> tail = head;
-
+    /**
+     *  插入节点到尾部 包含两个CAS操作： 1.将新节点连接到尾部  2.tail指向新的节点
+     */
     public boolean put(E item) {
         Node<E> newNode = new Node<E>(item, null);
         while (true) {
@@ -32,7 +34,7 @@ public class LinkedQueue<E> {
             //不判断，if(nextPoint==null)成立，但是if(currentNode.next.compareAndSet(null, newNode))不成立
             //所以此处判断只是为了节省性能
             //所以此处判断是为了保证当前线程获取到的链表的静止状态是唯一的，并不是当前其他线程执行成功执行同样的方法后的静止状态
-            if (currentNode == tail.get()) {
+            if (currentNode == tail.get()) {    //由于tail指向新的节点是put的第二步，如果currentNode!=tail,说明链表处于静止状态，且有其他线程成功修改了链表，需要重新取共享内存的值
                 //判断是否为中间状态
                 if (nextPoint == null) { /* A */
                     //不为中间状态
@@ -47,8 +49,5 @@ public class LinkedQueue<E> {
             }
         }
     }
-    /**
-     *  插入节点到尾部 包含两个CAS操作： 1.将新节点连接到尾部  2.tail指向新的节点
-     *  ThreadA想要插入节点到尾部；
-     */
+
 }
