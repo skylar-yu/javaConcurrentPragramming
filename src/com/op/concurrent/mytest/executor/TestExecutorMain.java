@@ -6,10 +6,23 @@ import java.util.concurrent.*;
 
 /**
  * Created by Administrator on 2017/12/15.
+ http://blog.csdn.net/aitangyong/article/details/38172189
+    总结：invokeAny提交的多个任务中，如果任务都有异常，调用invokeAny会抛ExecutionException异常，究竟抛的是哪儿个任务的异常，无关紧要。
+         invokeAny()和任务的提交顺序无关，只是返回最早正常执行完成的任务。
+         invokeAnyTimeout()还没有到超时之前,所以的任务都已经异常完成,抛出ExecutionException<br>
+         如果超时前满,还没有没有完成的任务,抛TimeoutException
+
+ invokeAll是一个阻塞方法，会等待任务列表中的所有任务都执行完成。不管任务是正常完成，还是异常终止
+ Future.isDone()总是返回true
+ Future.isCanceled()可以判断任务是否在执行的过程中被取消还是完成(正常/异常)。
+ 通过Future.get()可以获取任务的返回结果，或者是任务在执行中抛出的异常
+ ExecutorService.invokeAll()方法产生了异常，线程池中还没有完成的任务会被取消执行
+
+
  */
 public class TestExecutorMain {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+        testInvokeAll();
     }
 
     /**
